@@ -1,20 +1,29 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styles from './ArticlesList.module.css';
-
+import { selectNewsData } from '../../features/search/searchSlice';
 import { Article } from '../../features/article/Article';
 
+import styles from './ArticlesList.module.css';
+
 export const ArticlesList = () => {
+
+    const newsData = useSelector(selectNewsData);
+
     return (
         <div>
             <h2>articlesList</h2>
 
-            {/* maps through articles in the state and renders an Article component for each article */}
-            {/* {articles.map(article => {
-                return (
-                    <Article key={article.id} article={article} />
-                );
-            })} */}
+            {newsData.status === 'fullfilled' && (
+                <div>
+                    <p>test only: list of articles:</p>
+                    {newsData.articles.results.map((article, index) => (
+                        <div key={index}>
+                            <h3>{article.title}</h3>
+                            <p>{article.content}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
 
             <Article />
             <Article />

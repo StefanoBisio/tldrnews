@@ -40,11 +40,11 @@ const searchSlice = createSlice({
     },
   });
 
-  // NOT needed as I don't have any sychronous actions
+// Exporting actions is NOT needed as I don't have any sychronous actions
 // export const { updateSearch } = searchSlice.actions;
 
-// Define the selector function
-export const selectSearchState = (state) => state.search;
+// Define selector functions
+export const selectNewsData = (state) => state.search;
 
 // Export the actions and the reducer
 export default searchSlice.reducer;

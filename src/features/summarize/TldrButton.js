@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import React, { useState } from 'react';
 
-import styles from './ArticlesList.module.css';
+// import styles from './TldrButton.module.css';
 
-export const TldrButton = () => {
-    return (
-        <div>
-            <button></button>
-        </div>
-    );
-}
+// export const TldrButton = ({generateResponse}) => {
+
+//     return (
+//         <div>
+//             <button onClick= {() => generateResponse()} >test</button>
+//         </div>
+//     );
+// }

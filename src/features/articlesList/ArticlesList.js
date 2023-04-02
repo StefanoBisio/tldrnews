@@ -13,9 +13,8 @@ export const ArticlesList = () => {
         <div>
             <h2>articlesList</h2>
 
-            {newsData.status === 'fullfilled' && (
+            {/* {newsData.status === 'fullfilled' && (
                 <div>
-                    <p>test only: list of articles:</p>
                     {newsData.articles.results.map((article, index) => (
                         <div key={index}>
                             <h3>{article.title}</h3>
@@ -23,11 +22,19 @@ export const ArticlesList = () => {
                         </div>
                     ))}
                 </div>
-            )}
+            )} */}
 
-            <Article />
-            <Article />
-            <Article />
+            {newsData.status === 'fullfilled' && (
+                <div>
+                    {newsData.articles.results.map((article, index) => (
+                        // <Article key={index} articleTitle={article.title} articleCopy={article.content} articleImage={article.image_url} />
+                        <Article key={index} article={article} />
+                    ))}
+                </div>
+            )}
+        
+
+
         </div>
     );
 }

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import ArticleModal from '../articleModal/ArticleModal';
 import styles from './Article.module.css';
 
 export const Article = ({ article }) => {
 
   const { title, content, image_url } = article;
-  const displayedArticle = useSelector((state) => state.article.displayedArticle);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 

@@ -15,16 +15,25 @@ const ArticleModal = ({ article, onClose }) => {
         dispatch(summarizeArticle(content));
     };
 
-    const handleClose = (e) => {
+      // handles clicks on the modal background
+      const handleClick = (e) => {
+        // If the click target is the same as the current target (i.e. the modal background)
         if (e.target === e.currentTarget) {
             onClose();
         }
     };
 
+    // handles clicks on the close button
+    const handleCloseButtonClick = (e) => {
+        e.stopPropagation();
+        onClose();
+    };
+
+
     return (
-        <div className={styles.modal} onClick={handleClose}>
-            <div className={styles.modalContent}>
-                {/* <button className={styles.modalCloseButton}>X</button> */}
+        <div className={styles.modal} onMouseDown={handleClick}>
+            <div className={styles.modalContent} >
+                <button className={styles.modalCloseButton} onClick={handleCloseButtonClick}>X</button>
                 {image_url && (
                     <img
                         src={image_url}

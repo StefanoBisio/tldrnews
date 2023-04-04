@@ -14,25 +14,31 @@ export const Search = () => {
     // Selector to get the API response data
     const searchStatus = useSelector(selectNewsData);
 
+    const handleSearch = () => {
+        dispatch(fetchNews(searchValue));
+        setSearchValue("");
+    }
+
     return (
         <div>
             <input
                 value={searchValue}
                 className={styles.searchInput}
                 onChange={(e) => setSearchValue(e.target.value)}
-                placeholder='Search here' 
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        handleSearch();
+                    }
+                }}
+                placeholder='Search news!'
             />
-            
-            {/* button that triggers the API call */}
-            <button onClick={() => dispatch(fetchNews(searchValue))}
-            className={styles.searchbutton}>
-                
+
+            <button onClick={handleSearch} className={styles.searchbutton}>
                 Search
             </button>
-            
+
             {searchStatus.status === 'loading' && <p>Loading...</p>}
             {searchStatus.status === 'failed' && <p>Error: {searchStatus.error}</p>}
-
         </div>
     );
 }

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { Configuration, OpenAIApi } from 'openai';
 
-// import { useSelector, useDispatch } from 'react-redux';
-// import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { summarizeArticle } from './articleSlice';
 
-// import { TldrButton } from '../../features/summarize/TldrButton';
+import { TldrButton } from '../../features/summarize/TldrButton';
 
-// import styles from './Article.module.css';
+import styles from './Article.module.css';
 
 //component that takes in the article data and displays it
-export const Article = ({ article }) => {
+export const Article = ({ index, article }) => {
 
     // destructuring the article object
     const { title, content, image_url } = article;
@@ -19,45 +19,27 @@ export const Article = ({ article }) => {
         return `${copy}\n\nTl;dr`;
     };
 
-    const [displayedArticleCopy, setDisplayedArticleCopy] = useState(content);
+    const displayedArticle = useSelector((state) => state.article.displayedArticle);
+    const dispatch = useDispatch();
 
-    const handleSummarize = async (input = composePrompt(content)) => {
-
-        const { Configuration, OpenAIApi } = require("openai");
-
-        const configuration = new Configuration({
-            apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-        });
-        const openai = new OpenAIApi(configuration);
-
-        const response = await openai.createCompletion({
-            model: "text-davinci-003",
-            prompt: input,
-            temperature: 0.7,
-            max_tokens: 200,
-            top_p: 1.0,
-            frequency_penalty: 0.0,
-            presence_penalty: 1,
-        });
-
-        console.log(response)
-
-        if (response.data.choices) {
-            setDisplayedArticleCopy(response.data.choices[0].text);
-        }
-    }
+    const handleSummarize = () => {
+        dispatch(summarizeArticle(content));
+    };
 
     return (
-        <div>
-            <h2>{title}</h2>
+        <div className={styles.previewContainer}>
+            {image_url && (
+                <img
+                    src={image_url}
+                    alt="article image"
+                    className={styles.image}
+                />
+            )}
+            <h2 className={styles.title}>{title}</h2>
 
-            <p>{displayedArticleCopy}</p>
+            <p className={styles.excerpt}>{displayedArticle.content || content}</p>
 
-            <img src={image_url} alt="article image" />
-
-            <button onClick={() => handleSummarize()} >test</button>
-
-            {/* <TldrButton generateResponse={generateResponse(composePrompt(content))} /> */}
+            <TldrButton onSummarize={handleSummarize} />
         </div>
     );
 }

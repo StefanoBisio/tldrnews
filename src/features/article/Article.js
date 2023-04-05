@@ -4,7 +4,7 @@ import styles from './Article.module.css';
 import defaultThumbnail from '../../TLDR-22.png'
 
 
-export const Article = ({ article }) => {
+export const Article = ({ article, index, summaries, setSummaries }) => {
 
   const { title, content, image_url } = article;
 
@@ -40,6 +40,9 @@ export const Article = ({ article }) => {
         <ArticleModal
           article={article}
           onClose={closeModal}
+          index={index}
+          summaries={summaries}
+          setSummaries={setSummaries}
         />
       )}
     </div>

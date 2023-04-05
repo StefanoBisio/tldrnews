@@ -14,7 +14,7 @@ export const summarizeArticle = createAsyncThunk(
     'article/summarizeArticle',
 
     // Define the payload creator function
-    async (content) => {
+    async ({ content, index }) => {
 
         const { Configuration, OpenAIApi } = require("openai");
         
@@ -35,7 +35,7 @@ export const summarizeArticle = createAsyncThunk(
         });
 
         if (response.data.choices) {
-            return response.data.choices[0].text;
+            return { summary: response.data.choices[0].text, index };
         } else {
             throw new Error('No summary found');
         }
@@ -53,7 +53,7 @@ export const articleSlice = createSlice({
             })
             .addCase(summarizeArticle.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.displayedArticle.content = action.payload;
+                // state.displayedArticle.content = action.payload;
                 state.error = null;
             })
             .addCase(summarizeArticle.rejected, (state, action) => {

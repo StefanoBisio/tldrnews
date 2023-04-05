@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { motion } from 'framer-motion';
@@ -26,23 +26,66 @@ const modalVariants = {
 
 
 
-const ArticleModal = ({ article, onClose }) => {
+const ArticleModal = ({ article, onClose, index, summaries, setSummaries }) => {
     const { title, content, image_url } = article;
 
     const [buttonText, setButtonText] = useState('TL;DR');
     const [buttonClass, setButtonClass] = useState(styles.tldrButton);
+    const [summarizedContent, setSummarizedContent] = useState(null);
 
 
-    const displayedArticle = useSelector((state) => state.article.displayedArticle);
+    // const displayedArticle = useSelector((state) => state.article.displayedArticle);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setSummarizedContent(summaries[index]);
+    }, [summaries, index]);
+
+    // const handleSummarize = async () => {
+    //     setButtonText('Summarizing...');
+    //     setButtonClass(styles.tldrButtonWorking);
+        
+    //     await dispatch(summarizeArticle(content));
+        
+    //     setButtonText('Done!');
+    //     setButtonClass(styles.tldrButtonDone);
+    // };
+
+    
+    // const handleSummarize = async () => {
+    //     setButtonText('Summarizing...');
+    //     setButtonClass(styles.tldrButtonWorking);
+        
+    //     // const result = dispatch(summarizeArticle({ content, id }));
+
+    //     const result = await dispatch(summarizeArticle({ content, index }));
+
+    //     if (summarizeArticle.fulfilled.match(result)) {
+    //         if (result.payload.index === index) {
+    //             setSummarizedContent(result.payload.summary);
+    //         }
+    //     }
+    //     setButtonText('Done!');
+    //     setButtonClass(styles.tldrButtonDone);
+    // };
 
     const handleSummarize = async () => {
         setButtonText('Summarizing...');
         setButtonClass(styles.tldrButtonWorking);
-        
-        await dispatch(summarizeArticle(content));
-        
+
+        const result = await dispatch(summarizeArticle({ content, index }));
+
+        if (summarizeArticle.fulfilled.match(result)) {
+            if (result.payload.index === index) {
+                setSummaries((prevSummaries) => {
+                    const newSummaries = [...prevSummaries];
+                    newSummaries[index] = result.payload.summary;
+                    return newSummaries;
+                });
+            }
+        }
+
         setButtonText('Done!');
         setButtonClass(styles.tldrButtonDone);
     };
@@ -86,7 +129,9 @@ const ArticleModal = ({ article, onClose }) => {
                         />
                     )}
                     <h2 className={styles.title}>{title}</h2>
-                    <p className={styles.content}>{displayedArticle.content || content}</p>
+                    {/* <p className={styles.content}>{displayedArticle.content || content}</p> */}
+                    <p className={styles.content}>{summarizedContent || content}</p>
+
                     <TldrButton onSummarize={handleSummarize} buttonText={buttonText} buttonClass={buttonClass} />
                 </div>
             </motion.div>

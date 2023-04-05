@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectNewsData } from '../../features/search/searchSlice';
 import { Article } from '../../features/article/Article';
@@ -9,8 +9,6 @@ import styles from './ArticlesList.module.css';
 export const ArticlesList = () => {
 
     const newsData = useSelector(selectNewsData);
-
-    const [summaries, setSummaries] = useState([]);
 
 
     const fadeInArticleVariants = {
@@ -39,7 +37,7 @@ export const ArticlesList = () => {
                             animate="visible"
                             custom={index}
                         >
-                            <Article index={index} article={article} summaries={summaries} setSummaries={setSummaries} />
+                            <Article index={index} article={article} />
                         </motion.div>
                     ))}
                 </div>

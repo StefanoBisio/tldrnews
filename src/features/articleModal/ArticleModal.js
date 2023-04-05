@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 
 import { TldrButton } from '../summarize/TldrButton';
 import { summarizeArticle } from '../article/articleSlice';
+import { updateSummary } from '../summarize/summariesSlice';
 
 import defaultThumbnail from '../../TLDR-22.png'
 import styles from './ArticleModal.module.css';
@@ -25,50 +26,14 @@ const modalVariants = {
 };
 
 
-
-const ArticleModal = ({ article, onClose, index, summaries, setSummaries }) => {
+const ArticleModal = ({ article, onClose, index }) => {
     const { title, content, image_url } = article;
+    const summaries = useSelector((state) => state.summaries);
 
     const [buttonText, setButtonText] = useState('TL;DR');
     const [buttonClass, setButtonClass] = useState(styles.tldrButton);
-    const [summarizedContent, setSummarizedContent] = useState(null);
-
-
-    // const displayedArticle = useSelector((state) => state.article.displayedArticle);
 
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setSummarizedContent(summaries[index]);
-    }, [summaries, index]);
-
-    // const handleSummarize = async () => {
-    //     setButtonText('Summarizing...');
-    //     setButtonClass(styles.tldrButtonWorking);
-        
-    //     await dispatch(summarizeArticle(content));
-        
-    //     setButtonText('Done!');
-    //     setButtonClass(styles.tldrButtonDone);
-    // };
-
-    
-    // const handleSummarize = async () => {
-    //     setButtonText('Summarizing...');
-    //     setButtonClass(styles.tldrButtonWorking);
-        
-    //     // const result = dispatch(summarizeArticle({ content, id }));
-
-    //     const result = await dispatch(summarizeArticle({ content, index }));
-
-    //     if (summarizeArticle.fulfilled.match(result)) {
-    //         if (result.payload.index === index) {
-    //             setSummarizedContent(result.payload.summary);
-    //         }
-    //     }
-    //     setButtonText('Done!');
-    //     setButtonClass(styles.tldrButtonDone);
-    // };
 
     const handleSummarize = async () => {
         setButtonText('Summarizing...');
@@ -77,13 +42,7 @@ const ArticleModal = ({ article, onClose, index, summaries, setSummaries }) => {
         const result = await dispatch(summarizeArticle({ content, index }));
 
         if (summarizeArticle.fulfilled.match(result)) {
-            if (result.payload.index === index) {
-                setSummaries((prevSummaries) => {
-                    const newSummaries = [...prevSummaries];
-                    newSummaries[index] = result.payload.summary;
-                    return newSummaries;
-                });
-            }
+            dispatch(updateSummary({ index, summary: result.payload.summary }));
         }
 
         setButtonText('Done!');
@@ -129,8 +88,8 @@ const ArticleModal = ({ article, onClose, index, summaries, setSummaries }) => {
                         />
                     )}
                     <h2 className={styles.title}>{title}</h2>
-                    {/* <p className={styles.content}>{displayedArticle.content || content}</p> */}
-                    <p className={styles.content}>{summarizedContent || content}</p>
+                    {/* <p className={styles.content}>{summarizedContent || content}</p> */}
+                    <p className={styles.content}>{summaries[index] || content}</p>
 
                     <TldrButton onSummarize={handleSummarize} buttonText={buttonText} buttonClass={buttonClass} />
                 </div>

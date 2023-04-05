@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ArticleModal from '../articleModal/ArticleModal';
 import styles from './Article.module.css';
+import defaultThumbnail from '../../TLDR-22.png'
+
 
 export const Article = ({ article }) => {
 
@@ -18,10 +20,16 @@ export const Article = ({ article }) => {
 
   return (
     <div className={styles.previewContainer} onClick={openModal}>
-      {image_url && (
+      {image_url ? (
         <img
           src={image_url}
-          alt="article image"
+          alt=""
+          className={styles.image}
+        />
+      ) : (
+        <img
+          src={defaultThumbnail}
+          alt=""
           className={styles.image}
         />
       )}

@@ -30,7 +30,7 @@ const searchSlice = createSlice({
         })
         .addCase(fetchNews.fulfilled, (state, action) => {
             state.articles = action.payload;
-            state.status = 'fullfilled';
+            state.status = 'fulfilled';
             state.error = null;
         })
         .addCase(fetchNews.rejected, (state, action) => {

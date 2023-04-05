@@ -2,11 +2,11 @@ import React from 'react';
 
 import styles from './TldrButton.module.css';
 
-export const TldrButton = ({ onSummarize }) => {
+export const TldrButton = ({ onSummarize, buttonText, buttonClass }) => {
   return (
     <div>
-      <button onClick={onSummarize} className={styles.button}>
-        TL:DR😪
+    <button className={buttonClass || styles.button} onClick={onSummarize}>
+        {buttonText || 'TL;DR'}
       </button>
     </div>
   );

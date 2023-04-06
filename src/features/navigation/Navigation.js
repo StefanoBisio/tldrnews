@@ -1,12 +1,34 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import styles from './Navigation.module.css';
 
-
 export const Navigation = () => {
-    return (
-        <div>
-        <h2>Navigation</h2>
-        </div>
-    );
-}
+  const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  return (
+    <>
+      <button onClick={handleToggle} className={styles.navToggle}>
+        Toggle Navigation
+      </button>
+      <nav
+        className={`${styles.navigation} ${isOpen || isHovered ? styles.open : ''}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <h2>sidenav</h2>
+      </nav>
+    </>
+  );
+};

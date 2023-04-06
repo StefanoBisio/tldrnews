@@ -8,6 +8,7 @@ export const Search = () => {
 
     // usestate to control the input field value  
     const [searchValue, setSearchValue] = useState("");
+    const [searchValueOnList, setSearchValueOnList] = useState("");
 
     const dispatch = useDispatch();
 
@@ -16,6 +17,7 @@ export const Search = () => {
 
     const handleSearch = () => {
         dispatch(fetchNews(searchValue));
+        setSearchValueOnList(searchValue);
         setSearchValue("");
     }
 
@@ -37,8 +39,9 @@ export const Search = () => {
                 Search
             </button>
 
-            {searchStatus.status === 'loading' && <p>Loading...</p>}
-            {searchStatus.status === 'failed' && <p>Error: {searchStatus.error}</p>}
+            {searchStatus.status === 'loading' && <h2>Loading...</h2>}
+            {searchStatus.status === 'fulfilled' && <h2>Latest news search for "{searchValueOnList ? searchValueOnList : ''}"</h2>}
+            {searchStatus.status === 'failed' && <h2>There was an error with your search: {searchStatus.error}</h2>}
         </div>
     );
 }

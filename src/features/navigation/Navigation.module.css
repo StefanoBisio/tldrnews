@@ -1,0 +1,30 @@
+.navigation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 90vh;
+  background-color: #333;
+  transform: translateX(-100%);
+  transition: transform 0.2s;
+  z-index: 10;
+}
+
+.navigation.open {
+  transform: translateX(0);
+}
+
+.navToggle {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  z-index: 20;
+}
+
+@media (min-width: 768px) {
+  .navigation {
+    transform: translateX(-90%);
+    max-width: 17rem;
+  }
+}

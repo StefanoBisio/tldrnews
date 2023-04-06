@@ -7,8 +7,8 @@ import { Search } from '../../features/search/Search';
 
 export const Board = () => {
     return (
-        <div>
-            <h2>Board</h2>
+        <div className={styles.board}>
+            <h1>TL:DR News</h1>
             <Search />
             <ArticlesList />
         </div>

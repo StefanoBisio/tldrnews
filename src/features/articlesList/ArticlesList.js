@@ -26,7 +26,6 @@ export const ArticlesList = () => {
 
     return (
         <div>
-            <h2>articlesList</h2>
             {/* Check if the newsData status is fulfilled */}
             {newsData.status === 'fulfilled' && (
                 <div className={styles.gridContainer}>

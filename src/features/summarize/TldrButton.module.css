@@ -8,19 +8,11 @@
     height: 3rem;
     font-weight: bold;
     border-radius: 6px;
+    cursor: pointer;
     margin-top: 2rem;
     transition: 0.7s linear;
     position: relative;
     overflow: hidden;
-}
-
-.button:after {
-    content: '?';
-    display: inline-block;
-    opacity: 0;
-    font-size: 0;
-    vertical-align: middle;
-    transition: opacity 0.3s, font-size 0.3s;
 }
 
 .button:hover:after,

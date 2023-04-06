@@ -8,10 +8,9 @@
   
   .title {
     font-size: 1.25rem;
-    margin-bottom: 10px;
+    margin-bottom: 2rem;
   }
   
-  /* image on article preview */ 
   .image {
     width: 100%;
     max-height: 160px;
@@ -23,7 +22,7 @@
   .excerpt {
     font-size: 0.9rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -42,6 +41,7 @@
   }
   
   .modalContent {
+    position: relative;
     background-color: #fff;
     border-radius: 5px;
     padding: 20px;
@@ -52,13 +52,33 @@
     text-align: left;
   }
   
+  .modalContent p {
+    text-align: justify;
+    line-height: 1.5;
+  }
+
+  .modalContent .title {
+    margin-top: 0;
+    font-size: 1.8rem;
+  }
+
+  .modalCloseButton {
+    position: absolute;
+    width: 5rem;
+    border-radius: 5px;
+    border: 1px solid #8a8a8a;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+
   @media screen and (min-width: 930px) {
     .modalContent {
       max-width: 930px;
     }
   }
   
-  /* image on article modal */
   .modalContent .image {
     display: block;
     width: 100%;
@@ -71,5 +91,9 @@
       max-width: 40%;
       margin: 0px 1.5rem 1.1rem 0;
       border: 1px solid
+    }
+
+    .modalContent .title {
+      max-width: 90%;
     }
   }

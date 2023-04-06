@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = [];
 
+// Define an async thunk to summarize an article's content
 export const summariesSlice = createSlice({
     name: 'summaries',
     initialState,

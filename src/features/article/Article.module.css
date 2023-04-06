@@ -11,6 +11,7 @@
     margin-bottom: 10px;
   }
   
+  /* image on article preview */ 
   .image {
     width: 100%;
     max-height: 160px;
@@ -28,3 +29,47 @@
     text-overflow: ellipsis;
   }
   
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modalContent {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 90%;
+    margin: auto;
+    max-height: 80%;
+    overflow-y: auto;
+    text-align: left;
+  }
+  
+  @media screen and (min-width: 930px) {
+    .modalContent {
+      max-width: 930px;
+    }
+  }
+  
+  /* image on article modal */
+  .modalContent .image {
+    display: block;
+    width: 100%;
+    max-height: inherit;
+  }
+
+  @media screen and (min-width: 768px) {
+    .modalContent .image {
+      float: left;
+      max-width: 40%;
+      margin: 0px 1.5rem 1.1rem 0;
+      border: 1px solid
+    }
+  }

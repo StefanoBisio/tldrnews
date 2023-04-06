@@ -1,4 +1,3 @@
-// features/articleSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const initialState = {

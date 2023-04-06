@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectNewsData } from '../../features/search/searchSlice';
-import { Article } from '../../features/article/Article';
+import { ArticleWithModal as Article } from '../../features/article/ArticleWithModal';
 import { motion } from 'framer-motion';
 
 import styles from './ArticlesList.module.css';

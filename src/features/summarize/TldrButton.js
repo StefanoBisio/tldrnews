@@ -20,7 +20,7 @@ export const TldrButton = ({ onSummarize, buttonText, buttonStatus }) => {
 
   return (
     <div>
-      <button className={buttonClass} onClick={onSummarize}>
+      <button className={buttonClass} onClick={buttonStatus == 'initial' ? onSummarize : null}>
         {buttonText || 'TL;DR'}
       </button>
     </div>

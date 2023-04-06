@@ -31,6 +31,7 @@
     background-size: cover;
     background-position: center;
 }
+
 .loading:after {
     content: none;
 }
@@ -39,7 +40,6 @@
     composes: button;
     transition: inherit;
     background-color: #00d69c;
-    color: #1c3d48;
 }
 
 .success:after {

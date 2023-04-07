@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import styles from './Board.module.css';
+import React from 'react';
+import styles from './Home.module.css';
 
 import { ArticlesList } from '../../features/articlesList/ArticlesList';
 import { Search } from '../../features/search/Search';

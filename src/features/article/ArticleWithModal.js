@@ -27,22 +27,28 @@ const modalVariants = {
 export const ArticleWithModal = ({ article, index }) => {
 
     const dispatch = useDispatch();
-    const { title, content, image_url } = article;
+
+    // Destructure the article object
+    const { title, content, image_url, pubDate, source_id, link } = article;
+
+    // Initialize state for modal open status
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // Initialize state for modal open status, button text, and button status
+    // Initialize state for the TldrButton component
     const [buttonText, setButtonText] = useState('TL;DR');
     const [buttonStatus, setbuttonStatus] = useState('initial');
+
+    // Get the summaries from the store
     const summaries = useSelector((state) => state.summaries);
 
     // OpenAI API call on TldrButton's onClick event
     const handleSummarize = async () => {
-        
+
         // Update the button text and status
         setButtonText('Summarizing...');
         setbuttonStatus('loading');
 
-        /* Dispatch the summarizeAritcle action with the content and index as payload.
+        /* Dispatch the summarizeArticle action with the content and index as payload.
         Including the index helps to uniquely identify each article in the list, 
         allowing the reducer to correctly update the summary for the corresponding 
         article. */
@@ -61,30 +67,39 @@ export const ArticleWithModal = ({ article, index }) => {
         setbuttonStatus('success');
     };
 
-    // handles clicks on the modal background
-    const handleBackgroundClick = (e) => {
-        // If the click target is the same as the current target (i.e. the modal background)
-        if (e.target === e.currentTarget) {
-            onClose();
-        }
-    };
+    /* LOCAL FUNCTIONS */
+        // handles clicks on the modal background
+        const handleBackgroundClick = (e) => {
+            // If the click target is the same as the current target (i.e. the modal background)
+            if (e.target === e.currentTarget) {
+                onClose();
+            }
+        };
 
-    // Define the openModal function to set the isModalOpen state to true
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-    // Define the onClose function to set the isModalOpen state to false
-    const onClose = () => {
-        setIsModalOpen(false);
-    };
-    // Define the handleCloseButtonClick function to handle clicks on the close button
-    const handleCloseButtonClick = (e) => {
-        e.stopPropagation();
-        onClose();
-    };
+        // Define the openModal function to set the isModalOpen state to true
+        const openModal = () => {
+            setIsModalOpen(true);
+        };
+        
+        // Define the onClose function to set the isModalOpen state to false
+        const onClose = () => {
+            setIsModalOpen(false);
+        };
+
+        // Define the handleCloseButtonClick function to handle clicks on the close button
+        const handleCloseButtonClick = (e) => {
+            e.stopPropagation();
+            onClose();
+        };
+
+        //helper function to take the pubDate string and return a formatted date
+        const formatDate = (dateString) => {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        };
 
     return (
-        
+
         <div className={styles.previewContainer} onClick={openModal}>
             {/* Render the article image or a default thumbnail */}
             {image_url ? (
@@ -94,8 +109,10 @@ export const ArticleWithModal = ({ article, index }) => {
             )}
 
             <h2 className={styles.title}>{title}</h2>
+            <p className={styles.additionalDetails}>Published on: <span>{formatDate(pubDate)}</span></p>
+            <p className={styles.additionalDetails}>Source:  <span>{source_id}</span></p>
             <p className={styles.excerpt}>{summaries[index] || content}</p>
-    
+
             {isModalOpen && (
                 // Render the modal
                 <div className={styles.modal} onMouseDown={handleBackgroundClick}>
@@ -118,13 +135,15 @@ export const ArticleWithModal = ({ article, index }) => {
                             )}
 
                             <h2 className={styles.title}>{title}</h2>
+                            <p className={styles.additionalDetails}>Published on: <span>{formatDate(pubDate)}</span></p>
+                            <p className={styles.additionalDetails}>Source:  <span><a href={link} target='_blank' rel='noreferrer'>{source_id}</a></span></p>
                             <p className={styles.content}>
-                                { (content || '').length === 0
+                                {(content || '').length === 0
                                     ? "Oops no content on this one! Not the best for this demo I'm afraid!"
                                     : summaries[index] || content
                                 }
                             </p>
-    
+
                             {/* Render the TldrButton component with data to manipulate it depending on API call status */}
                             <TldrButton onSummarize={handleSummarize} buttonText={buttonText} buttonStatus={buttonStatus} />
                         </div>
@@ -133,5 +152,5 @@ export const ArticleWithModal = ({ article, index }) => {
             )}
         </div>
     );
-    
+
 };

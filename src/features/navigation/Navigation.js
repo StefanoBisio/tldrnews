@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import MenuButton from './MenuButton';
+import { NavigationList } from './navigationList/NavigationList';
 import styles from './Navigation.module.css';
 
 export const Navigation = () => {
@@ -19,15 +21,21 @@ export const Navigation = () => {
 
   return (
     <>
-      <button onClick={handleToggle} className={styles.navToggle}>
-        Toggle Navigation
-      </button>
+      <MenuButton isOpen={isOpen} handleToggle={handleToggle} />
       <nav
-        className={`${styles.navigation} ${isOpen || isHovered ? styles.open : ''}`}
+        className={`${styles.navigation} ${
+          isOpen || isHovered ? styles.open : ''
+        }`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         <h2>sidenav</h2>
+        <NavigationList isOpen={isOpen || isHovered}>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          {/* Add more navigation items here */}
+        </NavigationList>
       </nav>
     </>
   );

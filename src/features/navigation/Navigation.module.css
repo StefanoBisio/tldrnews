@@ -24,7 +24,7 @@
 
 @media (min-width: 768px) {
   .navigation {
-    transform: translateX(-90%);
+    transform: translateX(-75%);
     max-width: 17rem;
   }
 }

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
-.board {
+.home {
     text-align: left;
     padding: 1rem;
     font-family: 'Montserrat', Helvetica, sans-serif;
@@ -8,7 +8,7 @@
 }
 
 @media (min-width: 768px) {
-    .board {
+    .home {
         padding: 3rem 5rem;
     }
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
 import styles from './NavigationList.module.css';
 
 const listItemVariants = {
@@ -13,7 +15,8 @@ const listItemVariants = {
   }),
 };
 
-export const NavigationList = ({ isOpen, children }) => {
+export const NavigationList = ({ handleClose, isOpen, children }) => {
+
   return (
     <ul className={styles.list}>
       <AnimatePresence>
@@ -28,7 +31,9 @@ export const NavigationList = ({ isOpen, children }) => {
               exit="hidden"
               className={styles.listItem}
             >
-              {child}
+              <Link to={child.props.to} onClick={handleClose}>
+                {child.props.children}
+              </Link>
             </motion.li>
           ))}
       </AnimatePresence>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MenuButton from './navigationToggle/MenuButton';
 import { NavigationList } from './navigationList/NavigationList';
 import styles from './Navigation.module.css';
+import Logo from '../../logo.png';
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +11,10 @@ export const Navigation = () => {
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
   };
 
   const handleMouseEnter = () => {
@@ -30,11 +35,12 @@ export const Navigation = () => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <h2>sidenav</h2>
-        <NavigationList isOpen={isOpen || isHovered}>
+        <NavigationList isOpen={isOpen || isHovered} handleClose={handleClose}>
+          <Link to="/" className={styles.logo}>
+            <img src={Logo} alt="TLDR News logo" />
+          </Link>
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
-          {/* Add more navigation items here */}
         </NavigationList>
       </nav>
     </>

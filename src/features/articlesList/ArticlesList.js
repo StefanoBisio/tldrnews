@@ -1,4 +1,3 @@
-// Import necessary libraries and components
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectNewsData } from '../../features/search/searchSlice';

@@ -9,7 +9,7 @@ import styles from './Article.module.css';
 import defaultThumbnail from '../../TLDR-22.png'
 
 
-// Define animation variants for the modal
+// Define animation variants for the modal animation
 const modalVariants = {
     hidden: { opacity: 0, scale: 0.8 },
     visible: {

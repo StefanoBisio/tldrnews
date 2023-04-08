@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MenuButton from './navigationToggle/MenuButton';
 import { NavigationList } from './navigationList/NavigationList';
@@ -8,6 +8,20 @@ import Logo from '../../logo.png';
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches);
+    };
+
+    updateIsMobile();
+
+    window.addEventListener('resize', updateIsMobile);
+    return () => {
+      window.removeEventListener('resize', updateIsMobile);
+    };
+  }, []);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -18,11 +32,15 @@ export const Navigation = () => {
   };
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    if (!isMobile) {
+      setIsHovered(true);
+    }
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    if (!isMobile) {
+      setIsHovered(false);
+    }
   };
 
   return (

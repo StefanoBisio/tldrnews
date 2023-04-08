@@ -51,3 +51,6 @@ button:hover {
     background-color: #029285;
     border-color: #029285;
 }
+button:focus {
+    box-shadow: 0 0 0 2px #007266;
+}

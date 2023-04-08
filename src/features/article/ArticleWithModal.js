@@ -101,7 +101,7 @@ export const ArticleWithModal = ({ article, index }) => {
 
     return (
 
-        <div className={styles.previewContainer} onClick={openModal}>
+        <div className={styles.previewContainer} onClick={openModal} tabIndex={0} onKeyDown={(e) => e.key === 'Enter' && openModal()}>
             {/* Render the article image or a default thumbnail */}
             {image_url ? (
                 <img src={image_url} alt="" className={styles.image} />

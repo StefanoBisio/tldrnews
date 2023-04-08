@@ -15,28 +15,30 @@ const listItemVariants = {
   }),
 };
 
-export const NavigationList = ({ handleClose, isOpen, children }) => {
-
+export const NavigationList = ({ isOpen, children, handleClose }) => {
   return (
     <ul className={styles.list}>
-      {/* AnimatePresence enables exit animations for its children when they're removed from the React tree. In this case, it's usedto animate motion.li elements when the navigation is closed. */}
       <AnimatePresence>
-        {isOpen &&
-          React.Children.map(children, (child, index) => (
-            <motion.li
-              key={index}
-              custom={index}
-              variants={listItemVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              className={styles.listItem}
+        {React.Children.map(children, (child, index) => (
+          <motion.li
+            key={index}
+            custom={index}
+            variants={listItemVariants}
+            initial="hidden"
+            animate={isOpen ? 'visible' : 'hidden'}
+            exit="hidden"
+            className={`${styles.listItem} ${isOpen ? '' : styles.visuallyHidden}`}
+          >
+            <Link
+              to={child.props.to}
+              onClick={handleClose}
+              onFocus={child.props.handleFocus}
+              onBlur={child.props.handleBlur}
             >
-              <Link to={child.props.to} onClick={handleClose}>
-                {child.props.children}
-              </Link>
-            </motion.li>
-          ))}
+              {child.props.children}
+            </Link>
+          </motion.li>
+        ))}
       </AnimatePresence>
     </ul>
   );

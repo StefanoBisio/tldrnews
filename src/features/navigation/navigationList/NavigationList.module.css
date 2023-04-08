@@ -1,19 +1,28 @@
 .list {
-    list-style-type: none;
-    padding: 2rem;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .listItem {
-    margin-bottom: 2rem;
-  }
+  list-style-type: none;
+  padding: 2rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
 
-  .listItem a {
-    color: white;
-    text-decoration: none;
-  }
-  
+.listItem {
+  margin-bottom: 2rem;
+}
+
+.listItem a {
+  color: white;
+  text-decoration: none;
+}
+
+.visuallyHidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}

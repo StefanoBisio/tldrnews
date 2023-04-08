@@ -5,10 +5,11 @@ export const AboutPage = () => {
   return (
     // <div className={`page-wrapper ${styles.about}`}>
     <div className={'page-wrapper'}>
-    <h1>About</h1>
-    <h2>What is this?</h2>
+      <h1>About</h1>
+      <h2>What is this?</h2>
+      <p>This app is a news article aggregator that fetches and displays a list of articles, allowing users to quickly browse through the headlines. When an article is selected, a modal opens up to present the full content, along with additional information such as the publication date and source. The app features a TL;DR (Too Long; Didn't Read) button that generates a summary of the article using an AI-powered summarization service, providing users with a shorter version of the content.</p>
       <p>
-        TL;DR News has been built by Stefano Bisio during his React.js learning path. This application is a modern web app demonstrating proficiency in a wide range of technologies and best practices. The following technologies and libraries have been used to build this application:
+        This is purely a tech demo, it has been built by Stefano Bisio during his React.js learning path. The following technologies and libraries have been used to build this application:
       </p>
       <ul>
         <li>React: A JavaScript library for building user interfaces</li>

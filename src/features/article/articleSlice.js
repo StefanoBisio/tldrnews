@@ -41,6 +41,7 @@ export const summarizeArticle = createAsyncThunk(
     }
 );
 
+//this slice is used entirely to set the status of the summarizeArticle thunk
 export const articleSlice = createSlice({
     name: 'article',
     initialState,

@@ -39,6 +39,7 @@ export const ArticleWithModal = ({ article, index }) => {
     const [buttonStatus, setbuttonStatus] = useState('initial');
 
     // Get the summaries from the store
+    // this is used to check if the summary for the current article has already been generated
     const summaries = useSelector((state) => state.summaries);
 
     // OpenAI API call on TldrButton's onClick event

@@ -12,6 +12,10 @@
   margin-bottom: 2rem;
 }
 
+.listItem a:hover {
+  text-decoration: underline;
+}
+
 .listItem a {
   color: white;
   text-decoration: none;

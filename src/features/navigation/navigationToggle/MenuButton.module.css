@@ -13,6 +13,10 @@
     top: 2rem;
     left: 1rem;
   }
+
+  .menuButton:hover {
+    background-color: transparent;
+  }
   
   .line {
     width: 100%;

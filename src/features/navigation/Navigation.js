@@ -54,8 +54,8 @@ export const Navigation = () => {
         onMouseLeave={handleMouseLeave}
       >
         <NavigationList isOpen={isOpen || isHovered} handleClose={handleClose}>
-          <Link to="/" className={styles.logo}>
-            <img src={Logo} alt="TLDR News logo" />
+          <Link to="/">
+            <img className={styles.logo} src={Logo} alt="TLDR News logo" />
           </Link>
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>

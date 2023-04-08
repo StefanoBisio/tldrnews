@@ -6,7 +6,7 @@ export const TldrButton = ({ onSummarize, buttonText, buttonStatus }) => {
   const getButtonClass = () => {
     switch (buttonStatus) {
       case 'initial':
-        return styles.button;
+        return styles.TldrButton;
       case 'loading':
         return styles.loading;
       case 'success':

@@ -24,14 +24,15 @@
 
 .logo {
   display: block;
-}
-.logo img {
-  width: 100%;
+  width: 140px;
 }
 
 @media (min-width: 768px) {
   .navigation {
     transform: translateX(-75%);
     max-width: 17rem;
+  }
+  .logo {
+    
   }
 }

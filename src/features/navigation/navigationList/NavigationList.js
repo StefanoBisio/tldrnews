@@ -19,6 +19,7 @@ export const NavigationList = ({ handleClose, isOpen, children }) => {
 
   return (
     <ul className={styles.list}>
+      {/* AnimatePresence enables exit animations for its children when they're removed from the React tree. In this case, it's usedto animate motion.li elements when the navigation is closed. */}
       <AnimatePresence>
         {isOpen &&
           React.Children.map(children, (child, index) => (

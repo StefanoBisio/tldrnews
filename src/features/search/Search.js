@@ -22,7 +22,7 @@ export const Search = () => {
     }
 
     return (
-        <div>
+        <div className={styles.searchContainer}>
             <input
                 value={searchValue}
                 className={styles.searchInput}
@@ -35,7 +35,7 @@ export const Search = () => {
                 placeholder='Search news!'
             />
 
-            <button onClick={handleSearch} className={styles.searchbutton}>
+            <button onClick={handleSearch} className={styles.searchButton}>
                 Search
             </button>
 

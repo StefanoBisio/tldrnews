@@ -18,6 +18,7 @@ export const summarizeArticle = createAsyncThunk(
         const { Configuration, OpenAIApi } = require("openai");
         
         const configuration = new Configuration({
+            organization: "org-qKw75MSmu3fqPzxaRs4gQt4w",
             apiKey: process.env.REACT_APP_OPENAI_API_KEY,
         });
         const openai = new OpenAIApi(configuration);

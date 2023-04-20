@@ -130,9 +130,9 @@ export const ArticleWithModal = ({ article, index }) => {
 
                             {/* Render the article image or a default thumbnail */}
                             {image_url ? (
-                                <img src={image_url} alt="article image" className={styles.image} />
+                                <img src={image_url} alt="" className={styles.image} />
                             ) : (
-                                <img src={defaultThumbnail} alt="article image" className={styles.image} />
+                                <img src={defaultThumbnail} alt="" className={styles.image} />
                             )}
 
                             <h2 className={styles.title}>{title}</h2>

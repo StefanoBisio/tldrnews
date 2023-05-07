@@ -2,6 +2,8 @@
 
 TLDR News is a React/Redux application that allows users to fetch the latest news from a query of their choosing, and generate summarized versions of them using OpenAI's GPT-3 model. The app uses Redux for state management and Framer Motion for animations.
 
+Hosted on Netlify: [TLDR News](https://effervescent-concha-d86787.netlify.app/)
+
 ## Features
 
 - Fetch and display news articles

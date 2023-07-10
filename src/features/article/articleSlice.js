@@ -1,6 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-const { Configuration, OpenAIApi } = require("openai");
-
 
 const initialState = {
     displayedArticle: {},
@@ -17,8 +15,8 @@ export const summarizeArticle = createAsyncThunk(
     // Define the payload creator function
     async ({ content, index }) => {
 
-        // const { Configuration, OpenAIApi } = require("openai");
-        
+        const { Configuration, OpenAIApi } = require("openai");
+    
         const configuration = new Configuration({
             organization: "org-S2WG5nWXfLl8gxGewlxGoIVd",
             apiKey: process.env.REACT_APP_OPENAI_API_KEY,
